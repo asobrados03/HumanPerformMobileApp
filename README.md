@@ -102,6 +102,7 @@ UI Events → Use Cases → Repositories → API/Database → UI State Updates
 ### **Herramientas de Desarrollo**
 - **Git**: Control de versiones con branching strategy
 - **Clean Code**: Principios SOLID y buenas prácticas
+- **IDEs**: WebStorm y Android Studio
 
 ## 📊 Métricas del Proyecto
 
