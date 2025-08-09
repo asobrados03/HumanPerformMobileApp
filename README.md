@@ -9,7 +9,7 @@
 
 > [!IMPORTANT]
 > Todo las caracteristicas de la aplicación móvil aqui mencionadas han sido desarrolladas por mi en su totalidad o gran parte de ellas. El resto de caracteristicas presentes en la aplicación móvil en
-> producción son autoría de mis dos compañeros del equipo de desarrollo de la aplicación móvil
+> producción son autoría de mis dos compañeros del equipo de desarrollo de la aplicación móvil.
 
 ## 📱 Sobre el Proyecto
 
@@ -35,12 +35,6 @@
 ### 🏃 **Sistema de Entrenadores**
 - Catálogo completo de entrenadores disponibles
 - Sistema de favoritos con persistencia
-- Información detallada y especialidades
-
-### 💳 **Integración de Pagos**
-- Google Pay integrado
-- Sistema de cupones y descuentos
-- Procesamiento seguro de transacciones
 
 ### 🎨 **Experiencia de Usuario Premium**
 - Material Design 3 con tema oscuro
@@ -107,12 +101,11 @@ UI Events → Use Cases → Repositories → API/Database → UI State Updates
 
 ### **Herramientas de Desarrollo**
 - **Git**: Control de versiones con branching strategy
-- **Metodologías Ágiles**: Sprints y entregas iterativas
 - **Clean Code**: Principios SOLID y buenas prácticas
 
 ## 📊 Métricas del Proyecto
 
-- **300 horas** de desarrollo
+- **+400 horas** de desarrollo
 - **14 endpoints** REST implementados
 - **2 plataformas** soportadas (Android/iOS, solo he trabajado con Android)
 - **5 módulos principales** de funcionalidad
