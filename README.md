@@ -106,7 +106,7 @@ UI Events → Use Cases → Repositories → API/Database → UI State Updates
 
 ## 📊 Métricas del Proyecto
 
-- **+400 horas** de desarrollo
+- **+350 horas** de desarrollo
 - **14 endpoints** REST implementados
 - **2 plataformas** soportadas (Android/iOS, solo he trabajado con Android)
 - **5 módulos principales** de funcionalidad
