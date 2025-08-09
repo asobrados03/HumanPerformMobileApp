@@ -118,17 +118,45 @@ UI Events → Use Cases → Repositories → API/Database → UI State Updates
 - **5 módulos principales** de funcionalidad
 - **80% código compartido** entre plataformas
 
-## 🔗 Endpoints API Principales
+## 🔗 Endpoints API desarrollados
 
-```http
-POST   /auth/register          # Registro de usuarios
-POST   /auth/login            # Autenticación
-GET    /auth/refresh          # Renovación de tokens
-GET    /users/profile         # Perfil de usuario
-PUT    /users/profile         # Actualización de perfil
-GET    /trainers              # Lista de entrenadores
-POST   /trainers/favorite     # Marcar favoritos
-```
+> \[!NOTE]
+> Todos los endpoints protegidos requieren **token JWT** válido vía `verifyToken`.
+
+---
+
+### **Autenticación**
+
+| Método | Ruta                    | Descripción                                                                                                |
+| ------ | ----------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `POST` | `/auth/register`        | Registro de usuario nuevo con imagen de perfil (`profile_pic`). Procesa y comprime imagen si es necesario. |
+| `POST` | `/auth/login`           | Autenticación de usuario y entrega de tokens.                                                              |
+| `POST` | `/auth/refresh`         | Renovación de token de acceso.                                                                             |
+| `PUT`  | `/auth/change-password` | Cambia la contraseña del usuario autenticado.                                                              |
+| `PUT`  | `/auth/reset-password`  | Restablece la contraseña (flujo de recuperación).                                                          |
+
+---
+
+### **Usuarios**
+
+| Método   | Ruta                   | Descripción                                                              |
+| -------- | ---------------------- | ------------------------------------------------------------------------ |
+| `PUT`    | `/user`                | Actualiza el perfil del usuario (con soporte para nueva foto de perfil). |
+| `DELETE` | `/user`                | Elimina la cuenta del usuario autenticado.                               |
+| `DELETE` | `/user/photo`          | Elimina la foto de perfil del usuario.                                   |
+| `POST`   | `/user/:userId/coupon` | Asigna un cupón a un usuario específico.                                 |
+| `GET`    | `/user/:userId/coupon` | Obtiene el cupón asignado a un usuario.                                  |
+| `POST`   | `/user/document`       | Sube un documento asociado al usuario (campo `file`).                    |
+
+---
+
+### **Entrenadores**
+
+| Método | Ruta                    | Descripción                                  |
+| ------ | ----------------------- | -------------------------------------------- |
+| `GET`  | `/list_coaches`         | Lista de entrenadores disponibles.           |
+| `POST` | `/user/preferred-coach` | Asigna entrenador preferido.                 |
+| `GET`  | `/user/preferred-coach` | Obtiene el entrenador preferido del usuario. |
 
 ## 🚀 Instalación y Desarrollo
 
@@ -162,7 +190,6 @@ Durante este proyecto de 3 meses adquirí experiencia práctica en:
 - Desarrollo multiplataforma con Kotlin Multiplatform
 - Diseño e implementación de APIs RESTful seguras
 - Gestión de estado y navegación en aplicaciones móviles
-- Integración de servicios de terceros (Google Pay)
 - Metodologías ágiles y trabajo en equipo
 - Resolución de problemas críticos en producción
 
