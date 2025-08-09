@@ -184,7 +184,7 @@ Durante este proyecto de 3 meses adquirí experiencia práctica en:
 - Desarrollo multiplataforma con Kotlin Multiplatform
 - Diseño e implementación de APIs RESTful seguras
 - Gestión de estado y navegación en aplicaciones móviles
-- Metodologías ágiles y trabajo en equipo
+- Trabajo en equipo
 - Resolución de problemas críticos en producción
 
 ---
