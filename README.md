@@ -189,6 +189,3 @@ Durante este proyecto de 3 meses adquirí experiencia práctica en:
 ---
 
 ⭐ **¿Te gustó el proyecto?** ¡Dale una estrella al repositorio!
-
-📧 **Contacto**: alfredo.sobrados@estudiantes.uva.es  
-💼 **LinkedIn**: [Tu perfil LinkedIn]
