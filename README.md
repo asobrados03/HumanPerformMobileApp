@@ -176,32 +176,27 @@ graph LR
             COMMON_DOMAIN[🎯 Domain Logic<br/>Entities, Use Cases]
             COMMON_DATA[💾 Data Layer<br/>Repositories, DTOs]
             COMMON_NET[🌐 Network Layer<br/>Ktor Client]
-            COMMON_UI[🎨 UI Logic<br/>ViewModels, States]
         end
         
         subgraph "🤖 androidMain (Android Specific)"
             ANDROID_PLAT[📱 Android Platform<br/>DataStore, File Access]
-            ANDROID_UI[🎨 Android UI<br/>Activities, Themes]
         end
         
         subgraph "🍎 iosMain (iOS Specific)"
             IOS_PLAT[📱 iOS Platform<br/>Keychain, File Access]
-            IOS_UI[🎨 iOS UI<br/>View Controllers]
         end
         
         COMMON_DOMAIN --> ANDROID_PLAT
         COMMON_DOMAIN --> IOS_PLAT
-        COMMON_UI --> ANDROID_UI
-        COMMON_UI --> IOS_UI
     end
     
     classDef commonCode fill:#f3e5f5,stroke:#7b1fa2,stroke-width:3px
     classDef androidCode fill:#e8f5e8,stroke:#388e3c,stroke-width:2px
     classDef iosCode fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
     
-    class COMMON_DOMAIN,COMMON_DATA,COMMON_NET,COMMON_UI commonCode
-    class ANDROID_PLAT,ANDROID_UI androidCode
-    class IOS_PLAT,IOS_UI iosCode
+    class COMMON_DOMAIN,COMMON_DATA,COMMON_NET commonCode
+    class ANDROID_PLAT androidCode
+    class IOS_PLAT iosCode
 ```
 
 ### 🔐 Flujo de Autenticación JWT
