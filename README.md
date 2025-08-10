@@ -71,7 +71,6 @@ graph TB
     end
     
     subgraph "☁️ External Services"
-        GPAY[💳 Google Pay API]
         STORAGE[📁 File Storage]
     end
     
@@ -85,7 +84,7 @@ graph TB
     
     class UI,VM,UC,REPO mobileLayer
     class API,AUTH,DB backendLayer
-    class GPAY,STORAGE externalLayer
+    class STORAGE externalLayer
 ```
 
 ### 🎯 Clean Architecture + Hexagonal Architecture
