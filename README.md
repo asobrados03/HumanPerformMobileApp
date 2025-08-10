@@ -75,7 +75,6 @@ graph TB
     end
     
     REPO -.->|HTTP/REST| API
-    API -.->|Integration| GPAY
     API -.->|File Upload| STORAGE
     
     classDef mobileLayer fill:#e1f5fe,stroke:#01579b,stroke-width:2px
