@@ -242,7 +242,7 @@ sequenceDiagram
 
 ```mermaid
 graph TD
-    ROOT[📦 FitCenter Project]
+    ROOT[📦 Human Perform App Project]
     
     subgraph "📱 Mobile Application"
         MOBILE[🎯 mobile-app/]
