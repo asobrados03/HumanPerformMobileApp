@@ -289,7 +289,7 @@ graph TD
     
     class ROOT rootStyle
     class MOBILE,SHARED,ANDROID,IOS,DOMAIN_MOD,DATA_MOD,COMMON_UI_MOD mobileStyle
-    class API_ROOT,ROUTES,MIDDLEWARE,MODELS,CONFIG backendStyle
+    class API_ROOT,ROUTES,MIDDLEWARE,CONTROLLERS,CONFIG backendStyle
 ```
 
 ### 🔄 Flujo de Datos Unidireccional
