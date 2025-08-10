@@ -247,16 +247,16 @@ graph TD
     subgraph "📱 Mobile Application"
         MOBILE[🎯 mobile-app/]
         
-        subgraph "Kotlin Multiplatform Modules"
+        subgraph "KMP Modules"
             SHARED[🤝 shared/<br/>commonMain, androidMain, iosMain]
-            ANDROID[🤖 androidApp/<br/>Android specific UI]
-            IOS[🍎 iosApp/<br/>iOS specific UI]
+            ANDROID[🤖 androidApp/<br/>Android native UI]
+            IOS[🍎 iosApp/<br/>iOS native UI]
         end
         
         subgraph "Shared Module Structure"
-            DOMAIN_MOD[🎯 domain/<br/>entities, usecases, repositories]
-            DATA_MOD[💾 data/<br/>models, clients, implementations]
-            COMMON_UI_MOD[🎨 commonUI/<br/>viewmodels, navigation]
+            DOMAIN_MOD[🎯 domain/<br/>security, usecases, repository, storage]
+            DATA_MOD[💾 data/<br/>models, network, persistence]
+            COMMON_UI_MOD[🎨 commonUI/<br/>viewmodels, navigation, uiStates, composables]
         end
     end
     
@@ -266,7 +266,7 @@ graph TD
         subgraph "API Structure"
             ROUTES[🛣️ routes/<br/>auth, users, trainers]
             MIDDLEWARE[🔒 middleware/<br/>auth, validation]
-            MODELS[📋 models/<br/>database schemas]
+            CONTROLLERS[🕹️ controllers/<br/>auth, users]
             CONFIG[⚙️ config/<br/>database, jwt]
         end
     end
@@ -281,7 +281,7 @@ graph TD
     SHARED --> COMMON_UI_MOD
     API_ROOT --> ROUTES
     API_ROOT --> MIDDLEWARE
-    API_ROOT --> MODELS
+    API_ROOT --> CONTROLLERS
     API_ROOT --> CONFIG
     
     classDef rootStyle fill:#fff3e0,stroke:#f57c00,stroke-width:3px
