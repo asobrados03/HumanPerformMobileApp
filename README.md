@@ -107,8 +107,8 @@ La aplicación implementa **Clean Architecture** con principios de **Arquitectur
 │   ├── persistence/        # Implementaciones de repositorios
 │   └── network/            # Clientes HTTP (Ktor)
 └── 📱 presentation/        # Capa de Presentación (Android)
-    ├── app/                 # Contiene el punto de entrada de la aplicación, la configuración global de Jetpack Compose y la navegación principal
-    │   ├── navigation/      # Arranque y grafo de navegación
+    ├── app/                 # Punto de entrada de la aplicación y configuración global de la UI
+    │   └── navigation/      # Arranque y grafo de navegación
     ├── data/                # Capa de datos (implementación)           
     ├── di/                  # Módulo de inyección manual
     ├── ui/                  # Capa de presentación (Compose)
