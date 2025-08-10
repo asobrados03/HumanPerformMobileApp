@@ -47,51 +47,56 @@
 ### 📋 Visión General del Sistema
 
 ```mermaid
-%%{init: {"flowchart": {"htmlLabels": true}} }%%
-graph TB
-    subgraph mobile[" "]
-        direction TB
-        TITLE_MOBILE["📱 <b>Mobile App</b><br/>(Kotlin Multiplatform)"]:::title
-        UI[🎨 UI Layer<br/>Jetpack Compose o SwiftUI]
-        VM[🧠 ViewModels<br/>State Management]
-        UC[⚙️ Use Cases<br/>Business Logic]
-        REPO[🔌 Repositories<br/>Data Abstraction]
-        
-        TITLE_MOBILE --> UI
-        UI --> VM
-        VM --> UC
-        UC --> REPO
-    end
-    
-    subgraph backend[" "]  
-        direction TB
-        TITLE_BACKEND["🌐 <b>Backend Services</b>"]:::title
-        API[🚀 Express.js API<br/>Node.js]
-        AUTH[🔐 JWT Auth<br/>Middleware]
-        DB[(🗄️ MariaDB<br/>Database)]
-        
-        TITLE_BACKEND --> API
-        API --> AUTH
-        API --> DB
-    end
-    
-    subgraph external[" "]
-        TITLE_EXTERNAL["☁️ <b>External Services</b>"]:::title
-        STORAGE[📁 File Storage]
-        
-        TITLE_EXTERNAL --> STORAGE
-    end
-    
-    REPO -.->|HTTP/REST| API
-    API -.->|File Upload| STORAGE
-    
-    classDef mobileLayer fill:#e1f5fe,stroke:#01579b,stroke-width:2px
-    classDef backendLayer fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
-    classDef externalLayer fill:#e8f5e8,stroke:#1b5e20,stroke-width:2px
-    classDef title fill:transparent,stroke:transparent,font-size:16px,font-weight:bold
-    class UI,VM,UC,REPO mobileLayer
-    class API,AUTH,DB backendLayer
-    class STORAGE externalLayer
+flowchart TB
+  %% Mobile subgraph (título como nodo interno)
+  subgraph mobile[" "]
+    direction TB
+    TITLE_MOBILE["📱 Mobile App (Kotlin Multiplatform)"]
+    UI["🎨 UI Layer<br/>Jetpack Compose o SwiftUI"]
+    VM["🧠 ViewModels<br/>State Management"]
+    UC["⚙️ Use Cases<br/>Business Logic"]
+    REPO["🔌 Repositories<br/>Data Abstraction"]
+    TITLE_MOBILE --> UI
+    UI --> VM
+    VM --> UC
+    UC --> REPO
+  end
+
+  %% Backend subgraph
+  subgraph backend[" "]
+    direction TB
+    TITLE_BACKEND["🌐 Backend Services"]
+    API["🚀 Express.js API<br/>Node.js"]
+    AUTH["🔐 JWT Auth<br/>Middleware"]
+    DB["🗄️ MariaDB<br/>Database"]
+    TITLE_BACKEND --> API
+    API --> AUTH
+    API --> DB
+  end
+
+  %% External subgraph
+  subgraph external[" "]
+    direction TB
+    TITLE_EXTERNAL["☁️ External Services"]
+    STORAGE["📁 File Storage"]
+    TITLE_EXTERNAL --> STORAGE
+  end
+
+  REPO -.->|HTTP/REST| API
+  API -.->|File Upload| STORAGE
+
+  classDef mobileLayer fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+  classDef backendLayer fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+  classDef externalLayer fill:#e8f5e8,stroke:#1b5e20,stroke-width:2px
+
+  class UI,VM,UC,REPO mobileLayer
+  class API,AUTH,DB backendLayer
+  class STORAGE externalLayer
+
+  %% Títulos transparentes
+  style TITLE_MOBILE fill:transparent,stroke:transparent
+  style TITLE_BACKEND fill:transparent,stroke:transparent
+  style TITLE_EXTERNAL fill:transparent,stroke:transparent
 ```
 
 ### 🎯 Clean Architecture + Hexagonal Architecture
