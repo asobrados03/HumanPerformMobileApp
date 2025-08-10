@@ -47,44 +47,44 @@
 ### 📋 Visión General del Sistema
 
 ```mermaid
+%%{init: {"flowchart": {"htmlLabels": true}} }%%
 graph TB
-    subgraph "📱 Mobile App "
-    "(Kotlin Multiplatform)"
-        direction TB
-        UI[🎨 UI Layer<br/>Jetpack Compose o SwiftUI]
-        VM[🧠 ViewModels<br/>State Management]
-        UC[⚙️ Use Cases<br/>Business Logic]
-        REPO[🔌 Repositories<br/>Data Abstraction]
-        
-        UI --> VM
-        VM --> UC
-        UC --> REPO
-    end
-    
-    subgraph "🌐 Backend Services"
-        direction TB
-        API[🚀 Express.js API<br/>Node.js]
-        AUTH[🔐 JWT Auth<br/>Middleware]
-        DB[(🗄️ MariaDB<br/>Database)]
-        
-        API --> AUTH
-        API --> DB
-    end
-    
-    subgraph "☁️ External Services"
-        STORAGE[📁 File Storage]
-    end
-    
-    REPO -.->|HTTP/REST| API
-    API -.->|File Upload| STORAGE
-    
-    classDef mobileLayer fill:#e1f5fe,stroke:#01579b,stroke-width:2px
-    classDef backendLayer fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
-    classDef externalLayer fill:#e8f5e8,stroke:#1b5e20,stroke-width:2px
-    
-    class UI,VM,UC,REPO mobileLayer
-    class API,AUTH,DB backendLayer
-    class STORAGE externalLayer
+  subgraph mobile["`📱 Mobile App
+  (Kotlin Multiplatform)`"]
+    direction TB
+    _pad[ ]:::sp  %% separador para que el título no se pegue arriba
+    UI[🎨 UI Layer<br/>Jetpack Compose o SwiftUI]
+    VM[🧠 ViewModels<br/>State Management]
+    UC[⚙️ Use Cases<br/>Business Logic]
+    REPO[🔌 Repositories<br/>Data Abstraction]
+    UI --> VM
+    VM --> UC
+    UC --> REPO
+  end
+
+  subgraph "🌐 Backend Services"
+    direction TB
+    API[🚀 Express.js API<br/>Node.js]
+    AUTH[🔐 JWT Auth<br/>Middleware]
+    DB[(🗄️ MariaDB<br/>Database)]
+    API --> AUTH
+    API --> DB
+  end
+
+  subgraph "☁️ External Services"
+    STORAGE[📁 File Storage]
+  end
+
+  REPO -.->|HTTP/REST| API
+  API -.->|File Upload| STORAGE
+
+  classDef mobileLayer fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+  classDef backendLayer fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+  classDef externalLayer fill:#e8f5e8,stroke:#1b5e20,stroke-width:2px
+  classDef sp fill:transparent,stroke:transparent
+  class UI,VM,UC,REPO mobileLayer
+  class API,AUTH,DB backendLayer
+  class STORAGE externalLayer
 ```
 
 ### 🎯 Clean Architecture + Hexagonal Architecture
