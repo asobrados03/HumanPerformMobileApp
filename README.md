@@ -47,56 +47,43 @@
 ### 📋 Visión General del Sistema
 
 ```mermaid
-flowchart TB
-  %% Mobile subgraph (título como nodo interno)
-  subgraph mobile[" "]
-    direction TB
-    TITLE_MOBILE["📱 Mobile App (Kotlin Multiplatform)"]
-    UI["🎨 UI Layer<br/>Jetpack Compose o SwiftUI"]
-    VM["🧠 ViewModels<br/>State Management"]
-    UC["⚙️ Use Cases<br/>Business Logic"]
-    REPO["🔌 Repositories<br/>Data Abstraction"]
-    TITLE_MOBILE --> UI
-    UI --> VM
-    VM --> UC
-    UC --> REPO
-  end
-
-  %% Backend subgraph
-  subgraph backend[" "]
-    direction TB
-    TITLE_BACKEND["🌐 Backend Services"]
-    API["🚀 Express.js API<br/>Node.js"]
-    AUTH["🔐 JWT Auth<br/>Middleware"]
-    DB["🗄️ MariaDB<br/>Database"]
-    TITLE_BACKEND --> API
-    API --> AUTH
-    API --> DB
-  end
-
-  %% External subgraph
-  subgraph external[" "]
-    direction TB
-    TITLE_EXTERNAL["☁️ External Services"]
-    STORAGE["📁 File Storage"]
-    TITLE_EXTERNAL --> STORAGE
-  end
-
-  REPO -.->|HTTP/REST| API
-  API -.->|File Upload| STORAGE
-
-  classDef mobileLayer fill:#e1f5fe,stroke:#01579b,stroke-width:2px
-  classDef backendLayer fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
-  classDef externalLayer fill:#e8f5e8,stroke:#1b5e20,stroke-width:2px
-
-  class UI,VM,UC,REPO mobileLayer
-  class API,AUTH,DB backendLayer
-  class STORAGE externalLayer
-
-  %% Títulos transparentes
-  style TITLE_MOBILE fill:transparent,stroke:transparent
-  style TITLE_BACKEND fill:transparent,stroke:transparent
-  style TITLE_EXTERNAL fill:transparent,stroke:transparent
+graph TB
+    subgraph "📱 Mobile App KMP"
+        direction TB
+        UI[🎨 UI Layer<br/>Jetpack Compose o SwiftUI]
+        VM[🧠 ViewModels<br/>State Management]
+        UC[⚙️ Use Cases<br/>Business Logic]
+        REPO[🔌 Repositories<br/>Data Abstraction]
+        
+        UI --> VM
+        VM --> UC
+        UC --> REPO
+    end
+    
+    subgraph "🌐 Backend Services"
+        direction TB
+        API[🚀 Express.js API<br/>Node.js]
+        AUTH[🔐 JWT Auth<br/>Middleware]
+        DB[(🗄️ MariaDB<br/>Database)]
+        
+        API --> AUTH
+        API --> DB
+    end
+    
+    subgraph "☁️ External Services"
+        STORAGE[📁 File Storage]
+    end
+    
+    REPO -.->|HTTP/REST| API
+    API -.->|File Upload| STORAGE
+    
+    classDef mobileLayer fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef backendLayer fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef externalLayer fill:#e8f5e8,stroke:#1b5e20,stroke-width:2px
+    
+    class UI,VM,UC,REPO mobileLayer
+    class API,AUTH,DB backendLayer
+    class STORAGE externalLayer
 ```
 
 ### 🎯 Clean Architecture + Hexagonal Architecture
@@ -119,7 +106,7 @@ La aplicación implementa **Clean Architecture** con principios de **Arquitectur
 │   ├── model/              # DTOs y modelos de datos
 │   ├── persistence/        # Implementaciones de repositorios
 │   └── network/            # Clientes HTTP (Ktor)
-└── 📱 presentation/        # Capa de Presentación
+└── 📱 presentation/        # Capa de Presentación (Android)
     ├── app/                 # Contiene el punto de entrada de la aplicación, la configuración global de Jetpack Compose y la navegación principal
     │   ├── navigation/      # Arranque y grafo de navegación
     ├── data/                # Capa de datos (implementación)           
@@ -158,7 +145,7 @@ graph TD
     end
     
     subgraph "📱 Presentation Layer"
-        VM2[🧠 ViewModels<br/>LoginViewModel, ProfileViewModel]
+        VM2[🧠 ViewModels<br/>AuthViewModel, UserViewModel]
         UI2[🎨 UI Components<br/>Jetpack Compose]
         
         VM2 --> UI2
@@ -182,10 +169,10 @@ graph TD
 
 ```mermaid
 graph LR
-    subgraph "📦 Kotlin Multiplatform Project"
+    subgraph "📦 KMP Project"
         direction TB
         
-        subgraph "🤝 commonMain (Shared Code - 80%)"
+        subgraph "🤝 commonMain (Shared Code)"
             COMMON_DOMAIN[🎯 Domain Logic<br/>Entities, Use Cases]
             COMMON_DATA[💾 Data Layer<br/>Repositories, DTOs]
             COMMON_NET[🌐 Network Layer<br/>Ktor Client]
