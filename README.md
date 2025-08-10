@@ -249,7 +249,6 @@ graph TD
         subgraph "Shared Module Structure"
             DOMAIN_MOD[🎯 domain/<br/>security, usecases, repository, storage]
             DATA_MOD[💾 data/<br/>models, network, persistence]
-            COMMON_UI_MOD[🎨 commonUI/<br/>viewmodels, navigation, uiStates, composables]
         end
     end
     
@@ -271,7 +270,6 @@ graph TD
     MOBILE --> IOS
     SHARED --> DOMAIN_MOD
     SHARED --> DATA_MOD  
-    SHARED --> COMMON_UI_MOD
     API_ROOT --> ROUTES
     API_ROOT --> MIDDLEWARE
     API_ROOT --> CONTROLLERS
@@ -283,7 +281,7 @@ graph TD
     classDef moduleStyle fill:#fce4ec,stroke:#c2185b,stroke-width:1px
     
     class ROOT rootStyle
-    class MOBILE,SHARED,ANDROID,IOS,DOMAIN_MOD,DATA_MOD,COMMON_UI_MOD mobileStyle
+    class MOBILE,SHARED,ANDROID,IOS,DOMAIN_MOD,DATA_MOD mobileStyle
     class API_ROOT,ROUTES,MIDDLEWARE,CONTROLLERS,CONFIG backendStyle
 ```
 
