@@ -49,7 +49,7 @@
 ```mermaid
 %%{init: {"flowchart": {"htmlLabels": true}} }%%
 graph TB
-    subgraph mobile[" "]  %% título vacío para evitar recortes
+    subgraph mobile[" "]
         direction TB
         TITLE_MOBILE["📱 <b>Mobile App</b><br/>(Kotlin Multiplatform)"]:::title
         UI[🎨 UI Layer<br/>Jetpack Compose o SwiftUI]
