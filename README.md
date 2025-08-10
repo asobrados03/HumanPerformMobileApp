@@ -44,10 +44,61 @@
 
 ## 🏗️ Arquitectura Técnica
 
-### **Clean Architecture + Hexagonal Architecture**
+### 📋 Visión General del Sistema
+
+```mermaid
+graph TB
+    subgraph "📱 Mobile App (Kotlin Multiplatform)"
+        direction TB
+        UI[🎨 UI Layer<br/>Jetpack Compose]
+        VM[🧠 ViewModels<br/>State Management]
+        UC[⚙️ Use Cases<br/>Business Logic]
+        REPO[🔌 Repositories<br/>Data Abstraction]
+        
+        UI --> VM
+        VM --> UC
+        UC --> REPO
+    end
+    
+    subgraph "🌐 Backend Services"
+        direction TB
+        API[🚀 Express.js API<br/>Node.js]
+        AUTH[🔐 JWT Auth<br/>Middleware]
+        DB[(🗄️ MariaDB<br/>Database)]
+        
+        API --> AUTH
+        API --> DB
+    end
+    
+    subgraph "☁️ External Services"
+        GPAY[💳 Google Pay API]
+        STORAGE[📁 File Storage]
+    end
+    
+    REPO -.->|HTTP/REST| API
+    API -.->|Integration| GPAY
+    API -.->|File Upload| STORAGE
+    
+    classDef mobileLayer fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef backendLayer fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef externalLayer fill:#e8f5e8,stroke:#1b5e20,stroke-width:2px
+    
+    class UI,VM,UC,REPO mobileLayer
+    class API,AUTH,DB backendLayer
+    class GPAY,STORAGE externalLayer
+```
+
+### 🎯 Clean Architecture + Hexagonal Architecture
+
+La aplicación implementa **Clean Architecture** con principios de **Arquitectura Hexagonal**, garantizando:
+
+- ✅ **Separación de responsabilidades** clara entre capas
+- ✅ **Independencia de frameworks** y tecnologías externas  
+- ✅ **Testabilidad** mediante inversión de dependencias
+- ✅ **Mantenibilidad** y facilidad de evolución
 
 ```
-📦 Estructura del Proyecto
+📦 Estructura del Proyecto de la App Móvil
 ├── 🎯 domain/               # Lógica de Negocio Pura
 │   ├── security/            # Modulos para encriptar y guardar en el almacenamiento local
 │   ├── repository/          # Interfaces de los repositorios
@@ -72,6 +123,202 @@
     └── worker/              # Tareas en background (WorkManager)
 
 ```
+
+```mermaid
+graph TD
+    subgraph "🎯 Domain Layer (Core Business Logic)"
+        ENT[📋 Entities<br/>User, Trainer, Payment]
+        UC2[⚙️ Use Cases<br/>LoginUseCase, GetTrainersUseCase]
+        REPO2[🔌 Repository Interfaces<br/>UserRepository, TrainerRepository]
+        
+        UC2 --> ENT
+        UC2 --> REPO2
+    end
+    
+    subgraph "🔌 Data Layer (Infrastructure)"
+        REPO_IMPL[💾 Repository Implementations<br/>UserRepositoryImpl]
+        DTO[📦 DTOs & Models<br/>UserDto, TrainerDto]
+        CLIENT[🌐 HTTP Clients<br/>Ktor Client]
+        CACHE[💽 Local Storage<br/>DataStore]
+        
+        REPO_IMPL --> DTO
+        REPO_IMPL --> CLIENT
+        REPO_IMPL --> CACHE
+    end
+    
+    subgraph "📱 Presentation Layer"
+        VM2[🧠 ViewModels<br/>LoginViewModel, ProfileViewModel]
+        UI2[🎨 UI Components<br/>Jetpack Compose]
+        
+        VM2 --> UI2
+    end
+    
+    VM2 -.-> UC2
+    REPO_IMPL -.->|implements| REPO2
+    
+    classDef domainLayer fill:#fff3e0,stroke:#e65100,stroke-width:3px
+    classDef dataLayer fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px
+    classDef presentationLayer fill:#e3f2fd,stroke:#1565c0,stroke-width:2px
+    
+    class ENT,UC2,REPO2 domainLayer
+    class REPO_IMPL,DTO,CLIENT,CACHE dataLayer
+    class VM2,UI2 presentationLayer
+```
+
+### 🤝 Kotlin Multiplatform - Código Compartido
+
+**80% del código compartido** entre Android e iOS usando la estrategia `expect/actual`:
+
+```mermaid
+graph LR
+    subgraph "📦 Kotlin Multiplatform Project"
+        direction TB
+        
+        subgraph "🤝 commonMain (Shared Code - 80%)"
+            COMMON_DOMAIN[🎯 Domain Logic<br/>Entities, Use Cases]
+            COMMON_DATA[💾 Data Layer<br/>Repositories, DTOs]
+            COMMON_NET[🌐 Network Layer<br/>Ktor Client]
+            COMMON_UI[🎨 UI Logic<br/>ViewModels, States]
+        end
+        
+        subgraph "🤖 androidMain (Android Specific)"
+            ANDROID_PLAT[📱 Android Platform<br/>DataStore, File Access]
+            ANDROID_UI[🎨 Android UI<br/>Activities, Themes]
+        end
+        
+        subgraph "🍎 iosMain (iOS Specific)"
+            IOS_PLAT[📱 iOS Platform<br/>Keychain, File Access]
+            IOS_UI[🎨 iOS UI<br/>View Controllers]
+        end
+        
+        COMMON_DOMAIN --> ANDROID_PLAT
+        COMMON_DOMAIN --> IOS_PLAT
+        COMMON_UI --> ANDROID_UI
+        COMMON_UI --> IOS_UI
+    end
+    
+    classDef commonCode fill:#f3e5f5,stroke:#7b1fa2,stroke-width:3px
+    classDef androidCode fill:#e8f5e8,stroke:#388e3c,stroke-width:2px
+    classDef iosCode fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    
+    class COMMON_DOMAIN,COMMON_DATA,COMMON_NET,COMMON_UI commonCode
+    class ANDROID_PLAT,ANDROID_UI androidCode
+    class IOS_PLAT,IOS_UI iosCode
+```
+
+### 🔐 Flujo de Autenticación JWT
+
+Sistema completo con **access tokens** y **refresh tokens** para máxima seguridad:
+
+```mermaid
+sequenceDiagram
+    participant U as 📱 User
+    participant APP as 🎨 Mobile App
+    participant API as 🚀 API Server
+    participant DB as 🗄️ Database
+    
+    U->>APP: Enter credentials
+    APP->>API: POST /auth/login
+    API->>DB: Validate user
+    DB-->>API: User data
+    API->>API: Generate JWT + Refresh Token
+    API-->>APP: {accessToken, refreshToken}
+    APP->>APP: Store tokens in DataStore
+    
+    Note over APP,API: Subsequent API calls
+    APP->>API: GET /users/profile<br/>Authorization: Bearer {accessToken}
+    
+    alt Token expired
+        API-->>APP: 401 Unauthorized
+        APP->>API: POST /auth/refresh<br/>{refreshToken}
+        API-->>APP: New {accessToken}
+        APP->>API: Retry original request
+    end
+    
+    API-->>APP: Protected resource data
+```
+
+### 📁 Estructura de Proyecto
+
+```mermaid
+graph TD
+    ROOT[📦 FitCenter Project]
+    
+    subgraph "📱 Mobile Application"
+        MOBILE[🎯 mobile-app/]
+        
+        subgraph "Kotlin Multiplatform Modules"
+            SHARED[🤝 shared/<br/>commonMain, androidMain, iosMain]
+            ANDROID[🤖 androidApp/<br/>Android specific UI]
+            IOS[🍎 iosApp/<br/>iOS specific UI]
+        end
+        
+        subgraph "Shared Module Structure"
+            DOMAIN_MOD[🎯 domain/<br/>entities, usecases, repositories]
+            DATA_MOD[💾 data/<br/>models, clients, implementations]
+            COMMON_UI_MOD[🎨 commonUI/<br/>viewmodels, navigation]
+        end
+    end
+    
+    subgraph "🌐 Backend API"
+        API_ROOT[⚡ api/]
+        
+        subgraph "API Structure"
+            ROUTES[🛣️ routes/<br/>auth, users, trainers]
+            MIDDLEWARE[🔒 middleware/<br/>auth, validation]
+            MODELS[📋 models/<br/>database schemas]
+            CONFIG[⚙️ config/<br/>database, jwt]
+        end
+    end
+    
+    ROOT --> MOBILE
+    ROOT --> API_ROOT
+    MOBILE --> SHARED
+    MOBILE --> ANDROID
+    MOBILE --> IOS
+    SHARED --> DOMAIN_MOD
+    SHARED --> DATA_MOD  
+    SHARED --> COMMON_UI_MOD
+    API_ROOT --> ROUTES
+    API_ROOT --> MIDDLEWARE
+    API_ROOT --> MODELS
+    API_ROOT --> CONFIG
+    
+    classDef rootStyle fill:#fff3e0,stroke:#f57c00,stroke-width:3px
+    classDef mobileStyle fill:#e8f5e8,stroke:#388e3c,stroke-width:2px
+    classDef backendStyle fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    classDef moduleStyle fill:#fce4ec,stroke:#c2185b,stroke-width:1px
+    
+    class ROOT rootStyle
+    class MOBILE,SHARED,ANDROID,IOS,DOMAIN_MOD,DATA_MOD,COMMON_UI_MOD mobileStyle
+    class API_ROOT,ROUTES,MIDDLEWARE,MODELS,CONFIG backendStyle
+```
+
+### 🔄 Flujo de Datos Unidireccional
+
+```
+👆 UI Events → 🧠 ViewModels → ⚙️ Use Cases → 🔌 Repositories → 🌐 API/Database
+                    ↓                            ↓                    ↓
+📱 UI State Updates ←────────────────────────────┴────────────────────┘
+```
+
+
+## 💡 Decisiones Técnicas Clave
+
+### **¿Por qué Clean Architecture?**
+- **Testabilidad**: Cada capa se puede testear independientemente
+- **Flexibilidad**: Fácil cambiar de Ktor a Retrofit, o MariaDB a PostgreSQL
+- **Escalabilidad**: Agregar nuevas features sin afectar código existente
+
+### **¿Por qué Kotlin Multiplatform?**
+- **Eficiencia**: 80% del código reutilizable = menos bugs, menos mantenimiento
+- **Consistencia**: Misma lógica de negocio en ambas plataformas
+- **Performance**: Compilación nativa, no híbrido como React Native
+
+### **¿Por qué JWT + Refresh Tokens?**
+- **Seguridad**: Access tokens de corta duración (15min) + refresh tokens seguros
+- **UX**: Login automático sin interrumpir la experiencia del usuario
+- **Escalabilidad**: Stateless, fácil de escalar horizontalmente
 
 ### **Multiplataforma con Kotlin Multiplatform**
 - **`commonMain`**: 80% del código compartido (lógica de negocio, red, datos)
