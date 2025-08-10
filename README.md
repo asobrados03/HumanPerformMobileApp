@@ -52,7 +52,7 @@ graph TB
   subgraph mobile["`📱 Mobile App
   (Kotlin Multiplatform)`"]
     direction TB
-    _pad[ ]:::sp  %% separador para que el título no se pegue arriba
+    _pad[ ]:::sp
     UI[🎨 UI Layer<br/>Jetpack Compose o SwiftUI]
     VM[🧠 ViewModels<br/>State Management]
     UC[⚙️ Use Cases<br/>Business Logic]
