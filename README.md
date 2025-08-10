@@ -48,9 +48,10 @@
 
 ```mermaid
 graph TB
-    subgraph "📱 Mobile App (Kotlin Multiplatform)"
+    subgraph "📱 Mobile App "
+    "(Kotlin Multiplatform)"
         direction TB
-        UI[🎨 UI Layer<br/>Jetpack Compose]
+        UI[🎨 UI Layer<br/>Jetpack Compose o SwiftUI]
         VM[🧠 ViewModels<br/>State Management]
         UC[⚙️ Use Cases<br/>Business Logic]
         REPO[🔌 Repositories<br/>Data Abstraction]
