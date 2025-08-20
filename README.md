@@ -15,7 +15,11 @@
 
 **Human Perform** es una aplicación móvil multiplataforma desarrollada para un centro deportivo real en Segovia. La app permite a los usuarios gestionar sus entrenamientos, perfiles, favoritos y pagos de manera integral, mientras que el centro puede administrar sus servicios y entrenadores.
 
+<!---
 **🚀 Estado**: En producción - Utilizada por usuarios reales del centro deportivo
+-->
+
+**🚀 Estado**: En desarrollo - Será utilizada por usuarios reales del centro deportivo
 
 ## ✨ Características Principales
 
