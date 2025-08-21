@@ -420,7 +420,7 @@ npm run dev
 
 ## 📝 Aprendizajes Clave
 
-Durante este proyecto de 3 meses adquirí experiencia práctica en:
+Durante este proyecto de +3 meses adquirí experiencia práctica en:
 
 - Arquitecturas empresariales aplicadas a proyectos reales
 - Desarrollo multiplataforma con Kotlin Multiplatform
