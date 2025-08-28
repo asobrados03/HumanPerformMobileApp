@@ -332,7 +332,8 @@ UI Events → Use Cases → Repositories → API/Database → UI State Updates
 
 ### **Frontend Móvil**
 - **Kotlin Multiplatform Mobile**: Compartir código entre plataformas
-- **Jetpack Compose**: UI moderna y declarativa
+- **SwiftUI**: UI moderna y declarativa en iOS
+- **Jetpack Compose**: UI moderna y declarativa en Android
 - **Navigation Compose**: Navegación type-safe
 - **DataStore**: Persistencia cifrada local
 - **Ktor Client**: Cliente HTTP multiplataforma
@@ -346,20 +347,20 @@ UI Events → Use Cases → Repositories → API/Database → UI State Updates
 ### **Herramientas de Desarrollo**
 - **Git**: Control de versiones con branching strategy
 - **Clean Code**: Principios SOLID y buenas prácticas
-- **IDEs**: WebStorm y Android Studio
+- **IDEs**: WebStorm, Android Studio y Xcode
 
 ## 📊 Métricas del Proyecto
 
-- **+350 horas** de desarrollo
+- **+400 horas** de desarrollo
 - **14 endpoints** REST implementados
-- **2 plataformas** soportadas (Android/iOS, solo he trabajado con Android)
+- **2 plataformas** soportadas (Android/iOS)
 - **5 módulos principales** de funcionalidad
 - **80% código compartido** entre plataformas
 
 ## 🔗 Endpoints API desarrollados
 
 > \[!NOTE]
-> Todos los endpoints protegidos requieren **token JWT** válido vía `verifyToken`.
+> Todos los endpoints protegidos requieren **token JWT** válido vía `verifyToken`. Los unicos endpoints no protegidos son `/auth/register` y `/auth/login`
 
 ---
 
