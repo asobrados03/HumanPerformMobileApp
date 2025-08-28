@@ -8,7 +8,6 @@
 ![Swift](https://img.shields.io/badge/Swift-FA7343?style=for-the-badge&logo=swift&logoColor=white)
 ![SwiftUI](https://img.shields.io/badge/SwiftUI-0D96F6?style=for-the-badge&logo=swift&logoColor=white)
 ![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
-![Express.js](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)
 
 > [!IMPORTANT]
 > Todo las caracteristicas de la aplicación móvil aqui mencionadas han sido desarrolladas por mi en su totalidad o gran parte de ellas. El resto de caracteristicas presentes en la aplicación móvil en
