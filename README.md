@@ -348,6 +348,7 @@ UI Events → Use Cases → Repositories → API/Database → UI State Updates
 - **Git**: Control de versiones con branching strategy
 - **Clean Code**: Principios SOLID y buenas prácticas
 - **IDEs**: WebStorm, Android Studio y Xcode
+- **IAs**: ChatGPT, Codex y Claude
 
 ## 📊 Métricas del Proyecto
 
